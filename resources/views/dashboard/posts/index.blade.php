@@ -5,6 +5,12 @@
   <h1 class="h2">My Posts</h1>
 </div>
 
+@if (session()->has('success'))
+  <div class="alert alert-success" role="alert">
+    {{ session('success')}}
+  </div>   
+@endif
+
 <div class="table-responsive col-lg-8">
   <a href="/dashboard/posts/create" class="btn btn-primary mb-3">Create New Post</a>
   <table class="table table-striped table-sm">
@@ -20,12 +26,12 @@
       @foreach ($posts as $posts)
       <tr>
         <td>{{ $loop->iteration }}</td>
-        <td>{{ $post->title }}</td>
-        <td>{{ $post->category->name }}</td>
+        <td>{{ $posts->title }}</td>
+        <td>{{ $posts->category->name }}</td>
         <td>
-          <a href="/dashboard/posts/{{ $post->slug }}" class="badge bg-info"></a><span data-feather="eye"></span>
-          <a href="" class="badge bg-warning"></a><span data-feather="edit"></span>
-          <a href="" class="badge bg-danger"></a><span data-feather="x-circle"></span>
+          <a href="/dashboard/posts/{{ $posts->slug }}" class="badge bg-info"><span data-feather="eye"></span></a>
+          <a href="" class="badge bg-warning"><span data-feather="edit"></span></a>
+          <a href="" class="badge bg-danger"><span data-feather="x-circle"></span></a>
         </td>
       </tr>
       @endforeach
